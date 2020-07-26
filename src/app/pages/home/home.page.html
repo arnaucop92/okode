@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Películas</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onSearch()">
+        <ion-icon name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+  <h1>Mejor Valoradas</h1>
+  <div class="movies-flex" *ngIf="movies">
+    <div class="movie" *ngFor="let movie of movies" (click)="onMovieDetail(movie.id)">
+      <div class="poster">
+        <img *ngIf="movie.poster_path" class="poster" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path">
+        <img *ngIf="movie.poster_path" class="poster-effect" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path">
+      </div>
+      <div class="title">{{ movie.title }}</div>
+      <div class="year">{{ movie.release_date | date:'yyyy' }}</div>
+      <div class="vote"><ion-icon name="star"></ion-icon><b>{{ movie.vote_average }}</b>/10</div>
+    </div>
+  </div>
+  
+  <div class="content-fullscreen-message" *ngIf="movies && movies.length == 0">
+    Se ha producido un error, no se han encontrado películas
+  </div>
+
+  <ion-button *ngIf="movies && movies.length > 0 && page < 10" expand="full" size="large" fill="clear" (click)="onNextPage()">Ver más</ion-button>
+</div>
+</ion-content>

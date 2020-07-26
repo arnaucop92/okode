@@ -1,2 +1,1 @@
-# okode
-Ejercicio práctico
+OkodeExercice
